@@ -21,12 +21,15 @@ class WiFiDirectBroadcastReceiver(val manager: WifiP2pManager, val channel: Wifi
                 activity.isWifiP2pEnabled = state == WifiP2pManager.WIFI_P2P_STATE_ENABLED
             }
             WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION -> {
+                //TODO: É aqui que a treta rola
+                //Invocado quando outro peer troca de status dentro da rede
                 Log.d("PEERS_CHANGED_ACTION", "${device?.deviceName} ${device?.deviceAddress}")
             }
             WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION -> {
                 Toast.makeText(activity, "WIFI_P2P_CONNECTION_CHANGED_ACTION", Toast.LENGTH_LONG).show()
             }
             WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION -> {
+                //Chamado quando o próprio device muda de status na rede, nesta situação é possível buscar o nome e address do device
                 Toast.makeText(activity, "WIFI_P2P_THIS_DEVICE_CHANGED_ACTION - ${device?.deviceName} ${device?.deviceAddress}", Toast.LENGTH_LONG).show()
             }
         }
